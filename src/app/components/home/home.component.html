@@ -1,0 +1,26 @@
+<h1>Patito's Store</h1>
+<a routerLink="/patito" [queryParams]="{action: 'create'}"><button class="btn btn-primary">Add Patito</button></a>
+<hr>
+<table class="table table-striped table-hover">
+    <thead>
+        <th scope="col">ID</th>
+        <th scope="col">Color</th>
+        <th scope="col">Size</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Actions</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let patito of patitos">
+            <td scope="row"> {{ patito.id }} </td>
+            <td scope="row"> {{ patito.color }} </td>
+            <td scope="row"> {{ patito.size }} </td>
+            <td scope="row"> {{ patito.price }} USD </td>
+            <td scope="row"> {{ patito.quantity }} </td>
+            <td>
+                <i class="bi bi-pencil-square" (click)="callUpdatePage(patito.id)"></i> &nbsp;
+                <i class="bi bi-trash3-fill" (click)="deletePatito(patito.id)"></i>
+            </td>
+        </tr>
+    </tbody>
+</table>

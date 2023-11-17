@@ -1,0 +1,70 @@
+<div *ngIf="action === 'create';else editTitle">
+    <h1>Add Patito</h1>
+</div>
+<ng-template #editTitle>
+    <h1>Edit Patito</h1>
+</ng-template>
+
+<form #patitoAttributes="ngForm" (submit)="onSubmit(patitoAttributes.value)">
+    <div #createForm *ngIf="action === 'create';else editForm">
+        <p>
+            <label for="color">Color:</label><br>
+            <select name="color" id="color" ngModel>
+                <option value="GREEN">GREEN</option>
+                <option value="RED">RED</option>
+                <option value="BLACK">BLACK</option>
+                <option value="YELLOW">YELLOW</option>
+            </select>
+        </p>
+        <p>
+            <label for="size">Size:</label><br>
+            <select name="size" id="size" ngModel>
+                <option value="XLARGE">XLARGE</option>
+                <option value="LARGE">LARGE</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="XSMALL">XSMALL</option>
+            </select>
+        </p>
+        <p>
+            <label for="price">Price:</label><br>
+            <input type="number" name="price" id="price" ngModel>
+        </p>
+        <p>
+            <label for="quantity">Quantity:</label><br>
+            <input type="number" name="quantity" id="quantity" ngModel>
+        </p>
+        <button class="btn btn-primary">Create!</button>
+        <a routerLink=""><button class="btn btn-danger">Cancel</button></a>
+    </div>
+
+    <ng-template #editForm>
+        <p>
+            <label for="color">Color:</label><br>
+            <select name="color" id="color" ngModel disabled>
+                <option value="GREEN" [selected]="existing_patito.color === 'GREEN'">GREEN</option>
+                <option value="RED" [selected]="existing_patito.color === 'RED'">RED</option>
+                <option value="BLACK" [selected]="existing_patito.color === 'BLACK'">BLACK</option>
+                <option value="YELLOW" [selected]="existing_patito.color === 'YELLOW'">YELLOW</option>
+            </select>
+        </p>
+        <p>
+            <label for="size">Size:</label><br>
+            <select name="size" id="size" ngModel disabled>
+                <option value="XLARGE" [selected]="existing_patito.size === 'XLARGE'">XLARGE</option>
+                <option value="LARGE" [selected]="existing_patito.size === 'LARGE'">LARGE</option>
+                <option value="MEDIUM" [selected]="existing_patito.size === 'MEDIUM'">MEDIUM</option>
+                <option value="XSMALL" [selected]="existing_patito.size === 'XSMALL'">XSMALL</option>
+            </select>
+        </p>
+        <p>
+            <label for="price">Price:</label><br>
+            <input type="number" name="price" id="price" ngModel [(ngModel)]="existing_patito.price">
+        </p>
+        <p>
+            <label for="quantity">Quantity:</label><br>
+            <input type="number" name="quantity" id="quantity" ngModel [(ngModel)]="existing_patito.quantity">
+        </p>
+        <button class="btn btn-primary">Edit</button>
+        <a routerLink=""><button class="btn btn-danger">Cancel</button></a>
+    </ng-template>
+</form>
